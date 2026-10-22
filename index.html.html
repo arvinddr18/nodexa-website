@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Nodexa — Your social world &amp; local marketplace</title>
+  <meta name="description" content="Nodexa brings your social world and your local marketplace together — share posts, Stories and Scrolls, and find homes, jobs, services and events near you. Download on Google Play or open it on the web.">
+  <link rel="canonical" href="https://nodexaapp.com/">
+  <meta name="theme-color" content="#05070A">
+  <link rel="icon" href="https://reelestate-beta.vercel.app/nodexa-logo.png">
+  <link rel="apple-touch-icon" href="https://reelestate-beta.vercel.app/nodexa-logo.png">
+
+  <!-- Link preview (WhatsApp, Facebook, X, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nodexa">
+  <meta property="og:title" content="Nodexa — Your city. Your people. One app.">
+  <meta property="og:description" content="Share posts, Stories and Scrolls, and find homes, jobs, services and events near you. Download on Google Play or open it on the web.">
+  <meta property="og:url" content="https://nodexaapp.com/">
+  <meta property="og:image" content="https://reelestate-beta.vercel.app/nodexa-logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Nodexa — Your city. Your people. One app.">
+  <meta name="twitter:description" content="Share posts, Stories and Scrolls, and find homes, jobs, services and events near you.">
+  <meta name="twitter:image" content="https://reelestate-beta.vercel.app/nodexa-logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+
+<style>
+  /* Committed dark "neon node" identity matching the Nodexa app (deep navy, cyan->blue glow). */
+  :root {
+    color-scheme: dark;
+    --bg: #05070A;
+    --bg-2: #0B0F19;
+    --surface: #0F1621;
+    --fg: #EEF3FA;
+    --muted: #93A2B6;
+    --faint: #5E6B7E;
+    --cyan: #00E0FF;
+    --blue: #0057FF;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(0,224,255,0.30);
+    --glow: 0 0 40px rgba(0,120,255,0.35);
+    --radius: 20px;
+    --maxw: 1120px;
+    --font-display: "Sora", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background:
+      radial-gradient(1100px 600px at 50% -10%, rgba(0,87,255,0.22), transparent 60%),
+      radial-gradient(700px 500px at 90% 10%, rgba(0,224,255,0.10), transparent 55%),
+      var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.1; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap {
+    width: 100%; max-width: var(--maxw); margin-inline: auto;
+    padding-left: max(20px, env(safe-area-inset-left, 0px));
+    padding-right: max(20px, env(safe-area-inset-right, 0px));
+  }
+
+  .brand { display: inline-flex; align-items: center; gap: 10px; }
+  .brand svg { width: 30px; height: 30px; display: block; filter: drop-shadow(0 0 10px rgba(0,224,255,0.55)); }
+  .brand .word {
+    font-family: var(--font-display); font-weight: 800; font-style: italic;
+    font-size: 1.3rem; letter-spacing: 0.22em; padding-left: 0.22em;
+    background: linear-gradient(90deg, #ffffff, var(--cyan));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  header.nav {
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(14px); background: rgba(5,7,10,0.72);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+
+  .btn-play {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    color: #04121f; font-weight: 700; padding: 13px 20px; border-radius: 14px;
+    box-shadow: var(--glow); transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-play:hover { transform: translateY(-2px); box-shadow: 0 0 55px rgba(0,120,255,0.5); }
+  .btn-play .ico { width: 20px; height: 22px; flex: none; }
+  .btn-play .pt { display: flex; flex-direction: column; line-height: 1; text-align: left; }
+  .btn-play .pt small { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: .8; }
+  .btn-play .pt b { font-family: var(--font-display); font-size: 1.02rem; font-weight: 800; }
+  .nav .btn-play { padding: 10px 16px; }
+  .nav .btn-play .pt small { display: none; }
+
+  .btn-web {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--border-strong); border-radius: 14px;
+    padding: 13px 20px; color: var(--fg); font-weight: 700;
+    background: rgba(0,224,255,0.06); transition: transform .2s ease, background .2s ease;
+  }
+  .btn-web:hover { transform: translateY(-2px); background: rgba(0,224,255,0.14); }
+  .btn-web svg { width: 16px; height: 16px; }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border); border-radius: 14px;
+    padding: 12px 18px; color: var(--muted); font-weight: 600;
+  }
+
+  .hero { padding-block: clamp(48px, 9vw, 96px); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 6vw, 72px); align-items: center; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em; color: var(--cyan);
+    border: 1px solid var(--border-strong); border-radius: 999px;
+    padding: 6px 14px; margin-bottom: 22px; background: rgba(0,224,255,0.06);
+  }
+  .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+  .hero h1 { font-size: clamp(2.3rem, 6vw, 4rem); font-weight: 800; letter-spacing: -0.02em; }
+  .hero h1 .grad { background: linear-gradient(90deg, var(--cyan), var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p.lead { color: var(--muted); font-size: clamp(1.02rem, 2.4vw, 1.2rem); margin-top: 20px; max-width: 34ch; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 32px; }
+  .cta-note { color: var(--faint); font-size: 0.85rem; margin-top: 16px; }
+
+  .phone-wrap { display: flex; justify-content: center; }
+  .phone {
+    position: relative; width: min(300px, 78vw); aspect-ratio: 300 / 620;
+    border-radius: 42px; padding: 11px;
+    background: linear-gradient(160deg, #1b2740, #0a0e17);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 30px 80px rgba(0,30,90,0.55), 0 0 0 1px rgba(0,224,255,0.08);
+  }
+  .phone::before { content: ""; position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 92px; height: 22px; background: #05070A; border-radius: 999px; z-index: 3; }
+  .screen { position: relative; height: 100%; width: 100%; border-radius: 32px; overflow: hidden; background: var(--bg-2); display: flex; flex-direction: column; }
+  .scr-top { display: flex; align-items: center; justify-content: space-between; padding: 30px 16px 12px; }
+  .scr-top .word2 { font-family: var(--font-display); font-weight: 800; font-style: italic; font-size: 0.95rem; letter-spacing: 0.18em; background: linear-gradient(90deg,#fff,var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .scr-top .bell { width: 24px; height: 24px; border-radius: 50%; border: 1px dashed rgba(0,224,255,0.4); }
+  .chips-mini { display: flex; gap: 7px; padding: 4px 16px 12px; overflow: hidden; }
+  .chips-mini span { font-size: 0.56rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 5px 10px; border-radius: 999px; white-space: nowrap; color: var(--muted); background: var(--surface); border: 1px solid var(--border); }
+  .chips-mini span.on { color: #04121f; background: linear-gradient(90deg,var(--blue),var(--cyan)); border-color: transparent; }
+  .feed-mini { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; }
+  .card-mini { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
+  .card-mini .pic { height: 92px; background: linear-gradient(135deg, rgba(0,87,255,0.5), rgba(0,224,255,0.35)); }
+  .card-mini .pic.alt { background: linear-gradient(135deg, rgba(120,40,200,0.5), rgba(0,87,255,0.4)); }
+  .card-mini .meta { display: flex; align-items: center; gap: 8px; padding: 9px 10px; }
+  .card-mini .av { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg,var(--cyan),var(--blue)); flex: none; }
+  .card-mini .ln { height: 7px; border-radius: 4px; background: rgba(255,255,255,0.14); }
+  .scr-nav { margin-top: auto; display: flex; justify-content: space-around; align-items: center; padding: 12px 10px 16px; border-top: 1px solid var(--border); background: rgba(5,7,10,0.6); }
+  .scr-nav i { width: 20px; height: 20px; border-radius: 6px; background: rgba(255,255,255,0.14); display: block; }
+  .scr-nav i.mid { background: linear-gradient(135deg,var(--blue),var(--cyan)); border-radius: 50%; box-shadow: 0 0 14px rgba(0,180,255,0.7); }
+  .scr-nav i.active { background: var(--cyan); }
+
+  section { padding-block: clamp(48px, 8vw, 88px); }
+  .sec-head { max-width: 640px; margin-bottom: 44px; }
+  .sec-head .kic { color: var(--cyan); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .sec-head h2 { font-size: clamp(1.8rem, 4.5vw, 2.7rem); font-weight: 800; letter-spacing: -0.02em; margin-top: 12px; }
+  .sec-head p { color: var(--muted); margin-top: 14px; font-size: 1.05rem; }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .feat { background: linear-gradient(180deg, var(--surface), var(--bg-2)); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 24px; transition: border-color .2s ease, transform .2s ease; }
+  .feat:hover { border-color: var(--border-strong); transform: translateY(-3px); }
+  .feat .ib { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; margin-bottom: 18px; background: rgba(0,120,255,0.12); border: 1px solid var(--border-strong); color: var(--cyan); }
+  .feat .ib svg { width: 24px; height: 24px; }
+  .feat h3 { font-size: 1.22rem; font-weight: 700; }
+  .feat p { color: var(--muted); margin-top: 9px; font-size: 0.96rem; }
+
+  .hubs-band { background: linear-gradient(180deg, transparent, rgba(0,87,255,0.05)); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .chips { display: flex; flex-wrap: wrap; gap: 11px; }
+  .chips span { font-size: 0.92rem; font-weight: 600; padding: 9px 16px; border-radius: 999px; color: var(--muted); background: var(--surface); border: 1px solid var(--border); transition: color .2s, border-color .2s; }
+  .chips span:hover { color: var(--fg); border-color: var(--border-strong); }
+
+  .dl { text-align: center; border: 1px solid var(--border-strong); border-radius: 28px; padding: clamp(40px, 7vw, 72px) 24px; background: radial-gradient(600px 300px at 50% 0%, rgba(0,87,255,0.22), transparent 70%), linear-gradient(180deg, var(--surface), var(--bg-2)); }
+  .dl h2 { font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800; }
+  .dl p { color: var(--muted); margin-top: 14px; }
+  .dl .cta-row { justify-content: center; }
+
+  footer { border-top: 1px solid var(--border); margin-top: 20px; }
+  .foot-inner { padding-block: 40px; display: flex; flex-wrap: wrap; gap: 28px; justify-content: space-between; align-items: flex-start; }
+  .foot-col p { color: var(--muted); font-size: 0.92rem; margin-top: 12px; max-width: 30ch; }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 10px 26px; }
+  .foot-links a { color: var(--muted); font-size: 0.95rem; transition: color .2s; }
+  .foot-links a:hover { color: var(--cyan); }
+  .foot-mail { color: var(--fg); font-weight: 600; -webkit-user-select: all; user-select: all; }
+  .copy { padding-bottom: 36px; color: var(--faint); font-size: 0.85rem; }
+
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero p.lead { margin-inline: auto; }
+    .cta-row { justify-content: center; }
+    .phone-wrap { order: -1; margin-bottom: 8px; }
+    .features { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Nodexa home">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="48" y2="48"><stop offset="0" stop-color="#00E0FF"/><stop offset="1" stop-color="#0057FF"/></linearGradient></defs>
+        <path d="M24 3c9.4 0 17 7.4 17 16.6C41 31 24 45 24 45S7 31 7 19.6C7 10.4 14.6 3 24 3Z" fill="url(#g1)" opacity="0.18"/>
+        <path d="M24 5c8.3 0 15 6.5 15 14.6C39 29.6 24 42 24 42S9 29.6 9 19.6C9 11.5 15.7 5 24 5Z" stroke="url(#g1)" stroke-width="2"/>
+        <path d="M24 12l7 4v8l-7 4-7-4v-8l7-4Z" stroke="#00E0FF" stroke-width="1.8" fill="rgba(0,224,255,0.12)"/>
+        <circle cx="24" cy="20" r="2.4" fill="#00E0FF"/>
+      </svg>
+      <span class="word">NODEXA</span>
+    </a>
+    <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.nodexa.app" target="_blank" rel="noopener">
+      <svg class="ico" viewBox="0 0 24 26" aria-hidden="true"><path d="M2 2.4v21.2c0 .9 1 1.5 1.8 1l18-10.6c.8-.5.8-1.6 0-2L3.8 1.4C3 .9 2 1.5 2 2.4Z" fill="#04121f"/></svg>
+      <span class="pt"><small>Get it on</small><b>Google Play</b></span>
+    </a>
+  </div>
+</header>
+
+<a id="top"></a>
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span> Now live on Google Play</span>
+      <h1>Your city. Your people. <span class="grad">One app.</span></h1>
+      <p class="lead">Nodexa brings your social world and your local marketplace together — share posts, Stories and Scrolls, and find homes, jobs, services and events near you.</p>
+      <div class="cta-row">
+        <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.nodexa.app" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 24 26" aria-hidden="true"><path d="M2 2.4v21.2c0 .9 1 1.5 1.8 1l18-10.6c.8-.5.8-1.6 0-2L3.8 1.4C3 .9 2 1.5 2 2.4Z" fill="#04121f"/></svg>
+          <span class="pt"><small>Get it on</small><b>Google Play</b></span>
+        </a>
+        <a class="btn-web" href="https://reelestate-beta.vercel.app" target="_blank" rel="noopener">
+          Open on web
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <span class="btn-ghost">
+          <svg width="16" height="18" viewBox="0 0 16 18" fill="currentColor" aria-hidden="true"><path d="M11 0c.1 1-.3 2-1 2.8-.6.8-1.6 1.4-2.6 1.3-.1-1 .4-2 1-2.7C9.1.6 10.1.1 11 0Zm3.3 13.4c-.5 1.1-.7 1.6-1.3 2.6-.9 1.3-2.1 3-3.6 3-1.3 0-1.7-.9-3.5-.9s-2.2.9-3.5.9c-1.5 0-2.6-1.5-3.5-2.9C-1.1 12-1.3 7.2 1 4.7 2 3.4 3.4 2.7 4.8 2.7c1.4 0 2.2.9 3.4.9 1.1 0 1.8-.9 3.4-.9 1.2 0 2.5.7 3.4 1.8-3 1.6-2.5 5.9.3 7.1Z"/></svg>
+          iOS — coming soon
+        </span>
+      </div>
+      <p class="cta-note">Free · No download needed — use it right in your browser, or get the app</p>
+    </div>
+    <div class="phone-wrap">
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <div class="scr-top"><span class="word2">NODEXA</span><span class="bell"></span></div>
+          <div class="chips-mini"><span class="on">For You</span><span>Social</span><span>Rentals</span><span>Jobs</span><span>Food</span></div>
+          <div class="feed-mini">
+            <div class="card-mini"><div class="pic"></div><div class="meta"><div class="av"></div><div style="flex:1"><div class="ln" style="width:55%"></div><div class="ln" style="width:35%;margin-top:6px;opacity:.6"></div></div></div></div>
+            <div class="card-mini"><div class="pic alt"></div><div class="meta"><div class="av"></div><div style="flex:1"><div class="ln" style="width:48%"></div><div class="ln" style="width:30%;margin-top:6px;opacity:.6"></div></div></div></div>
+          </div>
+          <div class="scr-nav"><i class="active"></i><i></i><i class="mid"></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kic">What's inside</span>
+      <h2>Everything in one place</h2>
+      <p>One app for sharing moments and getting things done around you — no more jumping between five different apps.</p>
+    </div>
+    <div class="features">
+      <div class="feat"><div class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M8 13h8M8 16h5"/></svg></div><h3>Social feed</h3><p>Share posts, photos and moments. Nod to connect with people around you and build your circle.</p></div>
+      <div class="feat"><div class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M10 9l5 3-5 3V9Z" fill="currentColor" stroke="none"/></svg></div><h3>Scrolls</h3><p>Short videos that move. Swipe through trending Scrolls from your community and creators near you.</p></div>
+      <div class="feat"><div class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/><circle cx="12" cy="12" r="3.5"/></svg></div><h3>Stories</h3><p>Share your day in Stories that disappear in 24 hours, with music, tags and your closest lists.</p></div>
+      <div class="feat"><div class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg></div><h3>Local marketplace</h3><p>Buy, sell and discover — homes and rentals, jobs, services, events, food and much more, near you.</p></div>
+      <div class="feat"><div class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4V5Z"/><path d="M8 10h8M8 13h5"/></svg></div><h3>Messaging</h3><p>Chat one-to-one or in groups, share posts and profiles, and stay close to your people.</p></div>
+      <div class="feat"><div class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.2"/><path d="M6.5 6.5a8 8 0 000 11M17.5 6.5a8 8 0 010 11M4 4a12 12 0 000 16M20 4a12 12 0 010 16"/></svg></div><h3>Go Live</h3><p>Stream live to your followers in real time and bring your community together in the moment.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="hubs-band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kic">Every hub</span>
+      <h2>One app, every corner of local life</h2>
+      <p>From a flat to rent to a weekend gig, a new phone to a food festival — it's all in Nodexa.</p>
+    </div>
+    <div class="chips">
+      <span>Social</span><span>Rentals</span><span>PGs &amp; Hostels</span><span>Jobs &amp; Gigs</span><span>Home Services</span>
+      <span>Education</span><span>Marketplace</span><span>Auto &amp; Motors</span><span>Food &amp; Cafes</span><span>Local Events</span>
+      <span>Cinema</span><span>Travel</span><span>Gym &amp; Fitness</span><span>Sports</span><span>Fashion</span>
+      <span>Beauty &amp; Care</span><span>Tech &amp; Gadgets</span><span>Pets</span><span>Kids</span><span>News</span><span>Agriculture</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="dl">
+      <h2>Get Nodexa today</h2>
+      <p>Join your neighbourhood, share your world, and find what's around you — download the app or open it right in your browser.</p>
+      <div class="cta-row">
+        <a class="btn-play" href="https://play.google.com/store/apps/details?id=com.nodexa.app" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 24 26" aria-hidden="true"><path d="M2 2.4v21.2c0 .9 1 1.5 1.8 1l18-10.6c.8-.5.8-1.6 0-2L3.8 1.4C3 .9 2 1.5 2 2.4Z" fill="#04121f"/></svg>
+          <span class="pt"><small>Get it on</small><b>Google Play</b></span>
+        </a>
+        <a class="btn-web" href="https://reelestate-beta.vercel.app" target="_blank" rel="noopener">
+          Open on web
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-col">
+      <a class="brand" href="#top" aria-label="Nodexa">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M24 5c8.3 0 15 6.5 15 14.6C39 29.6 24 42 24 42S9 29.6 9 19.6C9 11.5 15.7 5 24 5Z" stroke="url(#g1)" stroke-width="2"/>
+          <path d="M24 12l7 4v8l-7 4-7-4v-8l7-4Z" stroke="#00E0FF" stroke-width="1.8" fill="rgba(0,224,255,0.12)"/>
+          <circle cx="24" cy="20" r="2.4" fill="#00E0FF"/>
+        </svg>
+        <span class="word">NODEXA</span>
+      </a>
+      <p>Connect, share and discover — your social world and your local marketplace, together.</p>
+    </div>
+    <div class="foot-col">
+      <div class="foot-links">
+        <a href="https://play.google.com/store/apps/details?id=com.nodexa.app" target="_blank" rel="noopener">Google Play</a>
+        <a href="https://reelestate-beta.vercel.app" target="_blank" rel="noopener">Open on web</a>
+        <a href="https://reelestate-beta.vercel.app/child-safety.html" target="_blank" rel="noopener">Child Safety</a>
+        <a href="mailto:arvindarvinddr@gmail.com">Contact</a>
+      </div>
+      <p style="margin-top:16px">Questions? <span class="foot-mail">arvindarvinddr@gmail.com</span></p>
+    </div>
+  </div>
+  <div class="wrap copy">© 2026 Nodexa. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
